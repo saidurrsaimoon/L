@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little Story</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#09070b;
+    color:white;
+    font-family:Georgia,"Noto Serif Bengali",serif;
+    overflow-x:hidden;
+}
+
+/* ---------- PASSWORD PAGE ---------- */
+
+#gate{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:
+    radial-gradient(circle at top,#351323,transparent 45%),
+    linear-gradient(135deg,#08060a,#1b0813,#08060a);
+}
+
+.gate-box{
+    width:100%;
+    max-width:430px;
+    padding:45px 28px;
+    text-align:center;
+    border-radius:30px;
+    border:1px solid rgba(255,160,190,.25);
+    background:rgba(255,255,255,.06);
+    backdrop-filter:blur(20px);
+    box-shadow:0 0 70px rgba(255,50,110,.15);
+    animation:float 4s ease-in-out infinite;
+}
+
+.lock{
+    font-size:50px;
+    margin-bottom:15px;
+    animation:pulse 2s infinite;
+}
+
+.gate-box h1{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.gate-box p{
+    color:#cdbec5;
+    line-height:1.7;
+    margin-bottom:25px;
+}
+
+input{
+    width:100%;
+    padding:16px;
+    border-radius:15px;
+    border:1px solid #704456;
+    background:#110c11;
+    color:white;
+    text-align:center;
+    font-size:17px;
+    outline:none;
+}
+
+.unlock{
+    width:100%;
+    margin-top:14px;
+    padding:16px;
+    border:none;
+    border-radius:15px;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    background:linear-gradient(90deg,#9d3158,#d95c87);
+    box-shadow:0 10px 30px rgba(220,70,120,.25);
+    transition:.3s;
+}
+
+.unlock:hover{
+    transform:translateY(-3px);
+}
+
+#error{
+    height:25px;
+    margin-top:10px;
+    color:#ff86a5;
+}
+
+/* ---------- WEBSITE ---------- */
+
+#site{
+    display:none;
+}
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:100;
+    display:flex;
+    justify-content:center;
+    gap:5px;
+    padding:12px;
+    background:rgba(8,6,10,.75);
+    backdrop-filter:blur(15px);
+    border-bottom:1px solid rgba(255,255,255,.05);
+}
+
+nav button{
+    border:none;
+    background:transparent;
+    color:#d9cbd1;
+    padding:9px 13px;
+    border-radius:20px;
+    cursor:pointer;
+}
+
+nav button:hover{
+    background:#351623;
+    color:white;
+}
+
+section{
+    min-height:100vh;
+    padding:110px 20px 70px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.wrap{
+    width:min(1000px,94vw);
+    text-align:center;
+}
+
+.badge{
+    color:#ff9fbc;
+    letter-spacing:3px;
+    text-transform:uppercase;
+    font-size:12px;
+}
+
+h2{
+    font-size:clamp(38px,7vw,72px);
+    margin:15px 0 22px;
+}
+
+.lead{
+    font-size:clamp(18px,3vw,25px);
+    line-height:1.9;
+    color:#e8dce1;
+}
+
+/* ---------- HOME ---------- */
+
+#home{
+    background:
+    radial-gradient(circle at 50% 20%,rgba(255,70,120,.15),transparent 40%);
+}
+
+#heroTitle{
+    min-height:85px;
+    color:#ffabc3;
+    text-shadow:0 0 30px rgba(255,80,130,.5);
+}
+
+#heroText{
+    min-height:80px;
+}
+
+/* ---------- CARDS ---------- */
+
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:16px;
+    margin-top:35px;
+}
+
+.card{
+    padding:27px 20px;
+    border-radius:23px;
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,160,190,.16);
+    transition:.4s;
+}
+
+.card:hover{
+    transform:translateY(-8px) scale(1.02);
+    background:rgba(255,90,130,.09);
+    box-shadow:0 20px 45px rgba(0,0,0,.4);
+}
+
+.card button{
+    width:100%;
+    border:none;
+    background:none;
+    color:white;
+    cursor:pointer;
+    font-size:17px;
+}
+
+.icon{
+    font-size:35px;
+    margin-bottom:12px;
+}
+
+/* ---------- STORY ---------- */
+
+#story{
+    background:linear-gradient(180deg,#09070b,#130910,#09070b);
+}
+
+.timeline{
+    max-width:720px;
+    margin:40px auto;
+    text-align:left;
+}
+
+.event{
+    border-left:2px solid #b94b70;
+    padding:0 0 30px 25px;
+    position:relative;
+}
+
+.event:before{
+    content:"";
+    position:absolute;
+    left:-7px;
+    top:2px;
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#f57da2;
+    box-shadow:0 0 18px #f57da2;
+}
+
+.date{
+    color:#ff9fbc;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+/* ---------- ALBUM ---------- */
+
+#album{
+    background:#0c080d;
+}
+
+.album{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+    margin-top:35px;
+}
+
+.photo{
+    aspect-ratio:1;
+    border-radius:18px;
+    overflow:hidden;
+    cursor:pointer;
+    border:1px solid #603646;
+    background:linear-gradient(135deg,#21121a,#100b10);
+    position:relative;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.5s;
+}
+
+.photo:hover img{
+    transform:scale(1.1);
+}
+
+.photo span{
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    padding:8px;
+    background:rgba(0,0,0,.65);
+    font-size:12px;
+}
+
+/* ---------- MODAL ---------- */
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+    background:rgba(5,3,7,.94);
+    backdrop-filter:blur(10px);
+}
+
+.modal-box{
+    width:min(700px,94vw);
+    max-height:85vh;
+    overflow:auto;
+    padding:35px;
+    border-radius:27px;
+    background:#160d14;
+    border:1px solid #63394b;
+    animation:pop .35s ease;
+}
+
+.close{
+    float:right;
+    border:none;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#311723;
+    color:white;
+    font-size:22px;
+    cursor:pointer;
+}
+
+.modal h3{
+    font-size:30px;
+    color:#ffabc3;
+    margin:10px 0 22px;
+}
+
+.modal p{
+    font-size:19px;
+    line-height:2;
+    color:#eadde2;
+}
+
+#lightbox img{
+    max-width:95%;
+    max-height:80vh;
+    border-radius:18px;
+    box-shadow:0 0 50px rgba(255,80,130,.2);
+}
+
+/* ---------- MUSIC ---------- */
+
+.music{
+    position:fixed;
+    right:15px;
+    bottom:15px;
+    z-index:150;
+}
+
+.music button{
+    border:1px solid #704056;
+    background:#2a1320;
+    color:white;
+    padding:12px 17px;
+    border-radius:25px;
+    cursor:pointer;
+}
+
+/* ---------- ROSE PETALS ---------- */
+
+.petal{
+    position:fixed;
+    top:-30px;
+    z-index:50;
+    pointer-events:none;
+    font-size:16px;
+    opacity:.55;
+    animation:fall linear forwards;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+    padding:45px 20px;
+    text-align:center;
+    color:#a99aa2;
+    background:#080609;
+}
+
+/* ---------- ANIMATIONS ---------- */
+
+@keyframes float{
+    50%{
+        transform:translateY(-8px);
+    }
+}
+
+@keyframes pulse{
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+@keyframes pop{
+    from{
+        transform:scale(.9);
+        opacity:0;
+    }
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+@keyframes fall{
+    0%{
+        transform:translateY(-30px) rotate(0deg);
+        opacity:0;
+    }
+    10%{
+        opacity:.55;
+    }
+    100%{
+        transform:translateY(110vh) translateX(90px) rotate(300deg);
+        opacity:0;
+    }
+}
+
+/* ---------- MOBILE ---------- */
+
+@media(max-width:700px){
+
+    nav{
+        justify-content:flex-start;
+        overflow-x:auto;
+    }
+
+    nav button{
+        white-space:nowrap;
+    }
+
+    .album{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .lead{
+        font-size:18px;
+    }
+
+    .modal-box{
+        padding:25px 20px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD PAGE -->
+
+<div id="gate">
+
+<div class="gate-box">
+
+<div class="lock">🔐</div>
+
+<h1>Private Letter</h1>
+
+<p>
+This little page is protected.<br>
+Enter the password to continue.
+</p>
+
+<input
+id="pass"
+type="password"
+placeholder="Enter password"
+>
+
+<button class="unlock" onclick="unlock()">
+Unlock
+</button>
+
+<div id="error"></div>
+
+</div>
+
+</div>
+
+
+<!-- MAIN WEBSITE -->
+
+<div id="site">
+
+<nav>
+
+<button onclick="go('home')">
+Home
+</button>
+
+<button onclick="go('story')">
+Our Story
+</button>
+
+<button onclick="go('album')">
+Album
+</button>
+
+<button onclick="openLetter()">
+Letter
+</button>
+
+<button onclick="openFinal()">
+Final
+</button>
+
+</nav>
+
+
+<!-- HOME -->
+
+<section id="home">
+
+<div class="wrap">
+
+<div class="badge">
+A little story written by Saimoon
+</div>
+
+<h2 id="heroTitle"></h2>
+
+<p class="lead" id="heroText"></p>
+
+
+<div class="card-grid">
+
+<div class="card">
+<button onclick="openPage('best')">
+<div class="icon">🤍</div>
+Best Friend
+</button>
+</div>
+
+
+<div class="card">
+<button onclick="openPage('special')">
+<div class="icon">✨</div>
+What Makes You Special
+</button>
+</div>
+
+
+<div class="card">
+<button onclick="openPage('feelings')">
+<div class="icon">💌</div>
+My Feelings
+</button>
+</div>
+
+
+<div class="card">
+<button onclick="openPage('roses')">
+<div class="icon">🌹</div>
+A Small Rose Garden
+</button>
+</div>
+
+
+<div class="card">
+<button onclick="openPage('memory')">
+<div class="icon">🕊️</div>
+A Beautiful Memory
+</button>
+</div>
+
+
+<div class="card">
+<button onclick="openLetter()">
+<div class="icon">📜</div>
+Open My Letter
+</button>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- STORY -->
+
+<section id="story">
+
+<div class="wrap">
+
+<div class="badge">
+Our Story
+</div>
+
+<h2>একটি ছোট্ট শুরু</h2>
+
+<div class="timeline">
+
+<div class="event">
+
+<div class="date">
+03 August 2026
+</div>
+
+<p class="lead type">
+এই দিনটি আমাদের গল্পের একটি সুন্দর তারিখ হয়ে আছে।
+কিছু মুহূর্ত ছোট হলেও স্মৃতিতে অনেক বড় হয়ে থাকে।
+</p>
+
+</div>
+
+
+<div class="event">
+
+<div class="date">
+Then
+</div>
+
+<p class="lead type">
+কথা, হাসি আর ছোট ছোট স্মৃতি—
+এভাবেই একটি গল্প ধীরে ধীরে সুন্দর হয়ে ওঠে।
+</p>
+
+</div>
+
+
+<div class="event">
+
+<div class="date">
+Always
+</div>
+
+<p class="lead type">
+যতদিন এই স্মৃতিগুলো মনে থাকবে,
+এই ছোট্ট গল্পটাও বিশেষ হয়ে থাকবে।
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ALBUM -->
+
+<section id="album">
+
+<div class="wrap">
+
+<div class="badge">
+Our Pics
+</div>
+
+<h2>Our Little Album</h2>
+
+<p class="lead">
+এই album-এ তোমার ১০টি ছবি থাকবে।
+ছবিতে ক্লিক করলে বড় করে দেখা যাবে।
+</p>
+
+<div class="album" id="albumGrid"></div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+এই চিঠিটি Saimoon-এর পক্ষ থেকে —
+একটি ছোট্ট স্মৃতির মতো। 🤍
+
+</footer>
+
+</div>
+
+
+<!-- MUSIC -->
+
+<div class="music">
+
+<button onclick="toggleMusic()" id="musicBtn">
+🎵 Play Music
+</button>
+
+</div>
+
+<audio id="music" loop>
+
+<source src="music.mp3" type="audio/mpeg">
+
+</audio>
+
+
+<!-- TEXT MODAL -->
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<button class="close" onclick="closeModal()">
+×
+</button>
+
+<h3 id="mTitle"></h3>
+
+<p id="mText"></p>
+
+</div>
+
+</div>
+
+
+<!-- PHOTO LIGHTBOX -->
+
+<div
+class="modal"
+id="lightbox"
+onclick="closeLightbox()"
+>
+
+<img id="bigPhoto" src="" alt="Album photo">
+
+</div>
+
+
+<script>
+
+/* PASSWORD */
+
+const PASSWORD = "NADIYA";
+
+
+/* CONTENT */
+
+const data = {
+
+best:[
+"Best Friend 🤍",
+
+"Nadiya শুধু একজন special মানুষ নয়—একজন best friend হিসেবেও খুব মূল্যবান। কথা বলা, হাসি ভাগ করে নেওয়া আর ছোট ছোট মুহূর্তগুলোকে সুন্দর করে তোলাই এই বন্ধুত্বের সবচেয়ে সুন্দর দিক।"
+],
+
+special:[
+"What Makes You Special ✨",
+
+"সৌন্দর্য শুধু চেহারায় নয়। একটি সুন্দর হাসি, ভালো ব্যবহার, যত্ন, সুন্দর মন আর মায়াময় উপস্থিতি—এই ছোট ছোট বিষয়গুলোই একজন মানুষকে সত্যিই special করে তোলে।"
+],
+
+feelings:[
+"My Feelings 💌",
+
+"কিছু অনুভূতি পুরোপুরি শব্দে বলা যায় না। তবুও বলা যায়—Nadiya আমার কাছে খুব কাছের একজন মানুষ। তার কথা, স্মৃতি আর উপস্থিতি আমার দিনের অনেক ছোট মুহূর্তকে meaningful করে।"
+],
+
+roses:[
+"A Small Rose Garden 🌹",
+
+"অনেকগুলো গোলাপ নয়—শুধু কয়েকটি নরম পাপড়ির মতো সুন্দর স্মৃতি। প্রতিটি পাপড়ি যেন একটি করে হাসি, একটি করে কথা, একটি করে ছোট্ট মুহূর্ত।"
+],
+
+memory:[
+"A Beautiful Memory 🕊️",
+
+"কিছু স্মৃতি খুব সাধারণ হয়, কিন্তু পরে মনে হলে সেগুলোই সবচেয়ে সুন্দর লাগে। এই পেজটা সেই ছোট ছোট মুহূর্তগুলোর জন্য।"
+]
+
+};
+
+
+/* UNLOCK */
+
+function unlock(){
+
+const value =
+document.getElementById("pass").value;
+
+if(value === PASSWORD){
+
+document.getElementById("gate").style.display="none";
+
+document.getElementById("site").style.display="block";
+
+
+typeText(
+"heroTitle",
+"Nadiya",
+90
+);
+
+
+typeText(
+"heroText",
+"তুমি আমার কাছে খুব কাছের একজন মানুষ—আমার অনেক সুন্দর ভাবনা আর স্মৃতির একটি বিশেষ অংশ।",
+45
+);
+
+
+buildAlbum();
+
+
+/* subtle petals */
+
+setInterval(makePetal,1400);
+
+}
+
+else{
+
+document.getElementById("error").textContent =
+"Wrong password.";
+
+}
+
+}
+
+
+/* ENTER KEY */
+
+document
+.getElementById("pass")
+.addEventListener("keydown",function(e){
+
+if(e.key==="Enter"){
+unlock();
+}
+
+});
+
+
+/* TYPEWRITER */
+
+function typeText(id,text,speed){
+
+const element =
+document.getElementById(id);
+
+element.innerHTML="";
+
+let i=0;
+
+const timer=setInterval(function(){
+
+element.innerHTML += text[i] || "";
+
+i++;
+
+if(i > text.length){
+
+clearInterval(timer);
+
+}
+
+},speed);
+
+}
+
+
+/* NAVIGATION */
+
+function go(id){
+
+document
+.getElementById(id)
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* POPUP PAGE */
+
+function openPage(key){
+
+document.getElementById("mTitle").textContent =
+data[key][0];
+
+const paragraph =
+document.getElementById("mText");
+
+paragraph.textContent="";
+
+document.getElementById("modal").style.display="flex";
+
+
+let i=0;
+
+const timer=setInterval(function(){
+
+paragraph.textContent +=
+data[key][1][i] || "";
+
+i++;
+
+if(i > data[key][1].length){
+
+clearInterval(timer);
+
+}
+
+},32);
+
+}
+
+
+/* LETTER */
+
+function openLetter(){
+
+openPage("feelings");
+
+}
+
+
+/* FINAL */
+
+function openFinal(){
+
+document.getElementById("mTitle").textContent =
+"শেষ কথা 🤍";
+
+const paragraph =
+document.getElementById("mText");
+
+paragraph.textContent="";
+
+document.getElementById("modal").style.display="flex";
+
+const text =
+"Do you know what you mean to me? এই পুরো পৃথিবীতে তুমি আমার কাছে খুব কাছের একজন মানুষ। তুমি আমার অনেক সুন্দর চিন্তা, স্মৃতি আর meaningful মুহূর্তের একটি বিশেষ অংশ। আমি হয়তো সবসময় perfect words খুঁজে পাই না, কিন্তু একটি কথা সহজ—তোমার জন্য আমার মনে সবসময় একটি special জায়গা থাকবে। I Love You, Nadiya. — Saimoon";
+
+
+let i=0;
+
+const timer=setInterval(function(){
+
+paragraph.textContent += text[i] || "";
+
+i++;
+
+if(i > text.length){
+
+clearInterval(timer);
+
+}
+
+},30);
+
+}
+
+
+/* CLOSE MODAL */
+
+function closeModal(){
+
+document.getElementById("modal").style.display="none";
+
+}
+
+
+/* ALBUM */
+
+function buildAlbum(){
+
+const grid =
+document.getElementById("albumGrid");
+
+for(let i=1;i<=10;i++){
+
+const box =
+document.createElement("div");
+
+box.className="photo";
+
+box.innerHTML=`
+
+<img
+src="photo${i}.jpg"
+alt="Photo ${i}"
+>
+
+<span>
+Photo ${i}
+</span>
+
+`;
+
+box.onclick=function(){
+
+openLightbox(i);
+
+};
+
+grid.appendChild(box);
+
+}
+
+}
+
+
+/* LIGHTBOX */
+
+function openLightbox(i){
+
+const image =
+document.getElementById("bigPhoto");
+
+image.src =
+"photo"+i+".jpg";
+
+document.getElementById("lightbox")
+.style.display="flex";
+
+}
+
+
+function closeLightbox(){
+
+document.getElementById("lightbox")
+.style.display="none";
+
+}
+
+
+/* MUSIC */
+
+function toggleMusic(){
+
+const audio =
+document.getElementById("music");
+
+const button =
+document.getElementById("musicBtn");
+
+if(audio.paused){
+
+audio.play();
+
+button.textContent="⏸ Pause Music";
+
+}
+
+else{
+
+audio.pause();
+
+button.textContent="🎵 Play Music";
+
+}
+
+}
+
+
+/* PETALS */
+
+function makePetal(){
+
+const petal =
+document.createElement("div");
+
+petal.className="petal";
+
+const symbols=[
+"🌹",
+"🌸",
+"❣"
+];
+
+petal.textContent =
+symbols[Math.floor(Math.random()*symbols.length)];
+
+petal.style.left =
+Math.random()*100+"vw";
+
+petal.style.animationDuration =
+(7 + Math.random()*5)+"s";
+
+document.body.appendChild(petal);
+
+setTimeout(function(){
+
+petal.remove();
+
+},12000);
+
+}
+
+</script>
+
+</body>
+</html>
